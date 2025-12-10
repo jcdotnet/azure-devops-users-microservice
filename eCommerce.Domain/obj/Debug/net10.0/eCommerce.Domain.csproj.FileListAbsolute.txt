@@ -1,0 +1,12 @@
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Domain\bin\Debug\net10.0\eCommerce.Domain.deps.json
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Domain\bin\Debug\net10.0\eCommerce.Domain.dll
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Domain\bin\Debug\net10.0\eCommerce.Domain.pdb
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Domain\obj\Debug\net10.0\eCommerce.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Domain\obj\Debug\net10.0\eCommerce.Domain.AssemblyInfoInputs.cache
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Domain\obj\Debug\net10.0\eCommerce.Domain.AssemblyInfo.cs
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Domain\obj\Debug\net10.0\eCommerce.Domain.csproj.CoreCompileInputs.cache
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Domain\obj\Debug\net10.0\eCommerce.Domain.sourcelink.json
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Domain\obj\Debug\net10.0\eCommerce.Domain.dll
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Domain\obj\Debug\net10.0\refint\eCommerce.Domain.dll
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Domain\obj\Debug\net10.0\eCommerce.Domain.pdb
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Domain\obj\Debug\net10.0\ref\eCommerce.Domain.dll

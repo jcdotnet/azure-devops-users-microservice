@@ -1,0 +1,16 @@
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\bin\Debug\net10.0\eCommerce.Application.deps.json
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\bin\Debug\net10.0\eCommerce.Application.dll
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\bin\Debug\net10.0\eCommerce.Application.pdb
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\bin\Debug\net10.0\eCommerce.Domain.dll
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\bin\Debug\net10.0\eCommerce.Domain.pdb
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\obj\Debug\net10.0\eCommerce.Application.csproj.AssemblyReference.cache
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\obj\Debug\net10.0\eCommerce.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\obj\Debug\net10.0\eCommerce.Application.AssemblyInfoInputs.cache
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\obj\Debug\net10.0\eCommerce.Application.AssemblyInfo.cs
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\obj\Debug\net10.0\eCommerce.Application.csproj.CoreCompileInputs.cache
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\obj\Debug\net10.0\eCommerce.Application.sourcelink.json
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\obj\Debug\net10.0\eCommerc.FF2FEB98.Up2Date
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\obj\Debug\net10.0\eCommerce.Application.dll
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\obj\Debug\net10.0\refint\eCommerce.Application.dll
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\obj\Debug\net10.0\eCommerce.Application.pdb
+C:\work\learning\C#\csharp-basics\asp.net\core\eCommerceApp\eCommerce.UsersService\eCommerce.Application\obj\Debug\net10.0\ref\eCommerce.Application.dll
