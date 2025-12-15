@@ -1,19 +1,143 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- main
+#- dev # branch where the pipeline should be triggered (changed from main to dev)
+# we can add more than one branch:
+  branches:
+    include:
+      - dev
+      - qa
+      - uat
+      - staging
+      - prod
 
-pool:
-  vmImage: ubuntu-latest
+resources:
+- repo: self # working repository where the pipeline yaml file is present
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+variables:
+  # Container registry service connection established during pipeline creation
+  # dockerRegistryServiceConnection: 'aa369cc9-2546-466a-b0ea-1dfe67b659c5'
+  # imageRepository: 'productsmicroservice'
+  # containerRegistry: 'jcdotnetecommerceregistry.azurecr.io'
+  # dockerfilePath: '$(Build.SourcesDirectory)/eCommerce.API/Dockerfile'
+  # tag: '$(Build.BuildId)'
+  # changing to name/value notation (both are correct)
+  
+  # Service connection that acts as bridge between the pipeline and the ACR
+  - name: dockerRegistryServiceConnection
+    value: 'aa369cc9-2546-466a-b0ea-1dfe67b659c5'
+  - name: imageRepository
+    value: 'users-microservice'
+  - name: containerRegistry
+    value: 'jcdotnetecommerceregistry.azurecr.io'
+  - name: dockerfilePath
+    value: '$(Build.SourcesDirectory)/eCommerce.API/Dockerfile'
+  - name: tag
+    value: '$(Build.BuildId)'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  # Agent VM image name
+  - name: linuxImageName
+    value: 'ubuntu-latest'
+  - name: windowsImageName
+    value: 'windows-latest'
+  - name: aksClusterName
+    value: 'eCommerce-aks-cluster'
+  - name: aksServiceConnectionName
+    value: 'dev-ecommerce-aks-cluster-dev-1765713468254'
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:
+  - job: Build
+    displayName: Docker Build
+    pool:
+      vmImage: $(linuxImageName)
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+        buildContext: $(Build.SourcesDirectory)
+
+- stage: Test
+  displayName: Test and publish results stage
+  jobs:
+  - job: RunTest
+    displayName: Run Unit Tests
+    pool:
+      vmImage: $(windowsImageName)
+    steps:
+    - checkout: self
+      displayName: Checkout source code
+ 
+    - task: NuGetToolInstaller@1
+      displayName: Install NuGetTool
+
+    - task: NuGetCommand@2
+      displayName: Restore NuGet Packages
+      inputs:
+        command: 'restore'
+        restoreSolution: '**/*.slnx'
+        
+    - task: MSBuild@1
+      displayName: Build solution
+      inputs:
+        solution: '**/*.slnx'
+        msbuildArchitecture: 'x64'
+        platform: 'Any CPU'
+        configuration: 'Debug'
+    
+    - task: VSTest@3
+      displayName: Test Products Service
+      inputs:
+        testSelector: 'testAssemblies'
+        testAssemblyVer2: |
+          **\UsersService.Test.dll
+          !**\*TestAdapter.dll
+          !**\obj\**
+        searchFolder: '$(System.DefaultWorkingDirectory)'
+        runTestsInIsolation: true
+        codeCoverageEnabled: true
+
+- stage: DeployToDev
+  displayName: Deploy to Dev
+  dependsOn: Test # only reaches here if the test stage is successful
+  condition: and(succeeded('Build'), eq(variables['Build.SourceBranch'], 'refs/heads/dev'))
+  variables: 
+  - group: users-microservice-dev
+  jobs:
+  - deployment: DeploymentToDev
+    displayName: Deployment to Dev Environment
+    environment: dev
+    strategy:
+      runOnce:
+        deploy:
+            steps:
+            - checkout: self
+              displayName: Checkout source code
+        
+            - script: |
+                echo "Listing contents of k8s"
+                ls -l $(Build.SourcesDirectory)/k8s/dev
+              displayName: 'List Files in k8s/dev Directory'
+
+            - script: |
+                 find $(Build.SourcesDirectory)/k8s/dev -type f \( -name "*.yaml" -o -name "*.yml" \) -exec sed -i 's/__TAG__/$(tag)/g' {} +
+              displayName: 'Replace image tag in all deployment files'
+
+            - task: Kubernetes@1
+              displayName: Deploy to dev namespace in kubernetes
+              inputs:
+                kubernetesServiceEndpoint: $(aksServiceConnectionName)
+                kubernetesCluster: $(aksClusterName)
+                namespace: $(kubernetes-namespace)
+                command: apply
+                arguments: '-f $(Build.SourcesDirectory)/k8s/dev/.'
