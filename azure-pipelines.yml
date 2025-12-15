@@ -96,7 +96,7 @@ stages:
         configuration: 'Debug'
     
     - task: VSTest@3
-      displayName: Test Products Service
+      displayName: Test Users Service
       inputs:
         testSelector: 'testAssemblies'
         testAssemblyVer2: |
